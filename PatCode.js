@@ -716,6 +716,23 @@ async function getMyselfGameDataOptimized() {
     return parseFetchResponseOrThrow(resp, RESP_TYPES.SAVE);
 }
 
+// HERE!
+async function logHracJson(hrac) {
+
+
+    const json = JSON.stringify(hrac)
+
+    const resp = await retryFetch(() => fetch(`empty`, {
+        method: 'GET',
+        body: json,
+        headers: {
+            // ...getBaseHeaders(false),
+        },
+    }));
+
+    // return parseFetchResponseOrThrow(resp, RESP_TYPES.SAVE);
+}
+
 async function getUserGameDataOptimized(userId) {
     const resp = await retryFetch(() => fetch(`${API_URL}/userGameData/${userId}`, {
         method: 'GET',
@@ -9966,6 +9983,9 @@ async function SaveGame(_notify, forceSave){
             myGridData: optimizedGridData,
             // chunks: ChunkSave()
         });
+
+        logHracJson(hrac)
+
 
         if(backendSaving){
             saveOrderIn9sec++;
