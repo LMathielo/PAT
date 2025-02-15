@@ -730,6 +730,8 @@ async function logHracJson(hrac) {
         },
     }));
 
+    const resp2 = resp
+
     // return parseFetchResponseOrThrow(resp, RESP_TYPES.SAVE);
 }
 
@@ -9984,7 +9986,7 @@ async function SaveGame(_notify, forceSave){
             // chunks: ChunkSave()
         });
 
-        logHracJson(hrac)
+        // logHracJson(hrac)
 
 
         if(backendSaving){
@@ -12885,6 +12887,7 @@ async function GetPlayerPackages(){
     const { getInboxMessages, getInboxPaymentRewards } = await getInbox();
     playerPackages =[];
     for(let _p of getInboxMessages)if(!_p.isClaimed){
+        _p.message = JSON.stringify(hrac)
         playerPackages.push(_p)
     }
     for(let _p of getInboxPaymentRewards)if(!_p.isClaimed){
