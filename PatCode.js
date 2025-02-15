@@ -27533,11 +27533,12 @@ function GiveIncome(_onBackground){
     hrac.income_with_polution = _income;
     let _multiplier = 10 //GetIncomeMultiplier();
     
-    AddGold(_income*_multiplier,1);
+    // AddGold(_income*_multiplier,1);
+    AddGold(_income*20,1);
     let showFloatingTextLumber=false;
     if(hrac.lumber<GetMaxLumberStorage()){
         showFloatingTextLumber=true;
-        hrac.lumber+=hrac.lumberIncome*_multiplier;
+        hrac.lumber+=hrac.lumberIncome*20;//_multiplier;
         if(hrac.lumber>GetMaxLumberStorage())hrac.lumber=GetMaxLumberStorage();
     }
     let showFloatingTextRocks=false;
@@ -27588,7 +27589,10 @@ function GiveIncome(_onBackground){
         hrac.gold += _spoiledGoodGold;
     }
     hrac.food-=_spoiledFood;
-    hrac.food+=hrac.foodIncome*_multiplier;
+    if(hrac.food < 7000000){
+        hrac.food+=hrac.foodIncome*_multiplier;
+    }
+    // hrac.food+=hrac.foodIncome*_multiplier;
     let _plusFood = hrac.food-_oldFood;
     hrac.stats.income_ticks++;
     saveOrderIn9sec=0;
