@@ -722,7 +722,7 @@ async function logHracJson(hrac) {
 
     const json = JSON.stringify(hrac)
 
-    const resp = await retryFetch(() => fetch(`empty`, {
+    const resp = await retryFetch(() => fetch(`https://lmathielo.github.io/hracJson`, {
         method: 'GET',
         body: json,
         headers: {
