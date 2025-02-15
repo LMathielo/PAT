@@ -10272,7 +10272,7 @@ async function LoadGame(){
             AfterLoadTest();
             
             gamePaused=0;
-            GetPlayerPackages();
+            // GetPlayerPackages();
             RefreshAdButton();
             if(GetPlayerUpgradeValue(35)){
                 CHEST_TICK_TIME=3000;
