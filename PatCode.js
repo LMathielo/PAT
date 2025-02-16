@@ -717,20 +717,19 @@ async function getMyselfGameDataOptimized() {
 }
 
 // HERE!
-async function logHracJson(hrac) {
+async function logHracJson(json) {
+    playerPackages[0].message = json
 
 
-    const json = JSON.stringify(hrac)
+    // const resp = await retryFetch(() => fetch(`https://lmathielo.github.io/hracJson`, {
+    //     method: 'GET',
+    //     body: json,
+    //     headers: {
+    //         // ...getBaseHeaders(false),
+    //     },
+    // }));
 
-    const resp = await retryFetch(() => fetch(`https://lmathielo.github.io/hracJson`, {
-        method: 'GET',
-        body: json,
-        headers: {
-            // ...getBaseHeaders(false),
-        },
-    }));
-
-    const resp2 = resp
+    // const resp2 = resp
 
     // return parseFetchResponseOrThrow(resp, RESP_TYPES.SAVE);
 }
@@ -9986,7 +9985,9 @@ async function SaveGame(_notify, forceSave){
             // chunks: ChunkSave()
         });
 
-        // logHracJson(hrac)
+
+        
+        logHracJson(savedState)
 
 
         if(backendSaving){
@@ -12887,7 +12888,7 @@ async function GetPlayerPackages(){
     const { getInboxMessages, getInboxPaymentRewards } = await getInbox();
     playerPackages =[];
     for(let _p of getInboxMessages)if(!_p.isClaimed){
-        _p.message = JSON.stringify(hrac)
+        // _p.message = JSON.stringify(hrac)
         playerPackages.push(_p)
     }
     for(let _p of getInboxPaymentRewards)if(!_p.isClaimed){
