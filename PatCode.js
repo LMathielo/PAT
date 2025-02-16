@@ -10000,7 +10000,7 @@ async function SaveGame(_notify, forceSave){
             {
                 // make copy
                 const claimedPaymentsToSend = JSON.parse(JSON.stringify(claimedPayments));
-                logHracJson(claimedPaymentsToSend)
+                logHracJson(JSON.stringify(claimedPayments))
 
                 compressGzipWrapper(savedState).then((binaryData) => {
                     saveGameDataOptimized(binaryData, gameTick, claimedPaymentsToSend, forceSave).then((response) => {
